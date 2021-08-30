@@ -3,21 +3,13 @@ import { Card, Container, ColLeft, ColCenter, ColRight, DataText, DataCols, Name
 import { FlatList, View, AsyncStorage } from 'react-native';
 import firebase from "firebase";
 
-
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function HomeScreen({ route, navigation }) {
 
-  // console.log(navigation.getState())
-  // const { favs, setFavs } = route.params;
-  // const favs = [];
   const [dataM, setDataM] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
-  const [favs,setFavs] = useState([])
-
-  console.log(favs)
-
-
+  const [favs, setFavs] = useState([])
 
   useEffect(() => {
     fetch('https://data.nasa.gov/resource/y77d-th95.json')
@@ -28,19 +20,16 @@ export default function HomeScreen({ route, navigation }) {
       });
   }, [])
 
-
   const handleSearch = (val) => {
     const filteredDataExport = dataM.filter((meteor) => {
       if (meteor.name.toLowerCase().includes(val.toLowerCase())) {
         return meteor;
-        // console.log(meteor.name)
       }
     })
     setFilteredList(filteredDataExport);
-    // console.log(filteredDataExport)
   }
 
-// || meteor.id.includes(JSON.parse(val))
+  // || meteor.id.includes(JSON.parse(val))
 
   const handleFavChange = (name) => {
     let favsToUpdate = [...favs];
@@ -55,10 +44,6 @@ export default function HomeScreen({ route, navigation }) {
 
 
   const renderData = (meteor) => {
-    // console.log();
-
-    // let isFaved = meteor.item.liked ? 'heart' : 'heart-online;'
-    // let isFavedColor = meteor.item.liked ? '#2e64e5' : '#333'
 
     return (
       <Container>
@@ -96,18 +81,17 @@ export default function HomeScreen({ route, navigation }) {
   return (
     <View>
       <View>
-        <MeteorSearch placeholder="Search for Name or ID" onChangeText={(val) => handleSearch(val)} style ={{
+        <MeteorSearch placeholder="Search for Name" onChangeText={(val) => handleSearch(val)} style={{
           textAlign: "center"
         }} />
       </View>
-
       <FlatList
         data={filteredList}
         renderItem={renderData}
         keyExtractor={(item, index) => `${index}`}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
-        windowSize = {10}
+        windowSize={10}
       />
     </View>
   );

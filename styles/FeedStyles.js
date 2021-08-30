@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.View`
-  flex: 1;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
+    flex: 1;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
 `;
 
 export const Card = styled.View`
@@ -21,13 +21,13 @@ export const Card = styled.View`
     elevation: 5;
 `;
 export const Name = styled.Text`
-text-align: center;
-font-size: 18px;
-font-weight: bold;
-padding-left: 15px;
-padding-right: 15px;
-margin-right: 15%
-margin-bottom: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 15%
+    margin-bottom: 15px;
 `;
 export const DataCols = styled.View`
     margin-top: 15%;
