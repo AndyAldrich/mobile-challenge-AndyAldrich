@@ -1,6 +1,6 @@
 import React, { useState, useEffect, PureComponent } from 'react';
 import { Card, Container, ColLeft, ColCenter, ColRight, DataText, DataCols, Name, Interaction, InteractionWrapper, InteractionText, Divider, MeteorSearch } from '../styles/FeedStyles';
-import { FlatList, View, TextInput, AsyncStorage } from 'react-native';
+import { FlatList, View, AsyncStorage } from 'react-native';
 import firebase from "firebase";
 
 
@@ -31,17 +31,16 @@ export default function HomeScreen({ route, navigation }) {
 
   const handleSearch = (val) => {
     const filteredDataExport = dataM.filter((meteor) => {
-      if (meteor.name.toLowerCase().includes(val.toLowerCase()) || meteor.id.includes(JSON.parse(val))) {
+      if (meteor.name.toLowerCase().includes(val.toLowerCase())) {
         return meteor;
         // console.log(meteor.name)
       }
-
     })
     setFilteredList(filteredDataExport);
     // console.log(filteredDataExport)
   }
 
-
+// || meteor.id.includes(JSON.parse(val))
 
   const handleFavChange = (name) => {
     let favsToUpdate = [...favs];
@@ -49,7 +48,7 @@ export default function HomeScreen({ route, navigation }) {
     favsToUpdate.includes(name) ? favsToUpdate = favsToUpdate.filter(meteor => {
       return meteor !== name
     }) : favsToUpdate.push(name);
-    console.log(favsToUpdate);;
+    console.log(favsToUpdate);
     setFavs(favsToUpdate);
     firebase.database().ref("user1").set(JSON.stringify(favsToUpdate));
   }
@@ -97,14 +96,18 @@ export default function HomeScreen({ route, navigation }) {
   return (
     <View>
       <View>
-        <MeteorSearch placeholder="Name or ID" onChangeText={(val) => handleSearch(val)} />
+        <MeteorSearch placeholder="Search for Name or ID" onChangeText={(val) => handleSearch(val)} style ={{
+          textAlign: "center"
+        }} />
       </View>
 
       <FlatList
         data={filteredList}
         renderItem={renderData}
         keyExtractor={(item, index) => `${index}`}
-        maxToRenderPerBatch={25}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize = {10}
       />
     </View>
   );

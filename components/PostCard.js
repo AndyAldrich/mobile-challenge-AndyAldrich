@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import { Card, Container, ColLeft, ColCenter, ColRight, DataText, DataCols, Name, Interaction, InteractionWrapper, InteractionText, Divider } from '../styles/FeedStyles';
+import React from 'react';
+import { Card, Container, ColLeft, ColCenter, ColRight, DataText, DataCols, Name, Interaction, InteractionWrapper, InteractionText, Divider, } from '../styles/FeedStyles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const PostCard = () =>{
+const PostCard = (meteor) =>{
 
     return (
         <Container>

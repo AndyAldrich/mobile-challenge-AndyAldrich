@@ -16,7 +16,9 @@ export default function App() {
     messagingSenderId: "78434949949",
     appId: "1:78434949949:web:822b36121a4aa8336fc354"
   };
-  firebase.initializeApp(firebaseConfig);
+  // if (!firebase.apps.length===0){  
+    firebase.initializeApp(firebaseConfig);
+  // }
   return (
   <NavigationContainer>
   {/* <NavigationContainer favs = {favs} setFavs={setFavs}> */}

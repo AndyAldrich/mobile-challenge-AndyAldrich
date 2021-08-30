@@ -95,8 +95,8 @@ export const MeteorSearch = styled.TextInput`
     border-width: 0;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    border-radius: 10px;
+    width: 98%;
+    border-radius: 15px;
     shadow-color: #7f5df0;
     shadow-offset: {width: 0, height: 10};
     shadow-opacity: 0.25;
